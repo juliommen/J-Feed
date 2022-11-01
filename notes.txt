@@ -1,0 +1,59 @@
+O React é uma biblioteca para criação de interfaces interativas.
+
+
+Rendering patterns:
+  SSR - Server Side Rendering: O servidor entrega as páginas prontas para o navegador só mostrá-las.
+  SPA - Single Page Applications: O servidor entrega dados, normalmente em JSON, para montagem das páginas 
+        no navagegador, que renderiza as páginas em runtime a partir de bibliotecas como o React. 
+        Tudo é controlado e construído a partir do Javascript.
+
+Compiladores transformam código de uma linguagem em outra. 
+Babel é um compilador, que transforma versões de Javascript mais novas em mais antigas, compatíveis
+com todos os browsers.
+
+Bundlers juntam vários arquivos, por exemplo scripts Javascript, em um só para uso do Browser. 
+Webpack é um bundler famoso.
+
+Hoje os Browser já suportam a referência de um script no outro (ECMA script modules), 
+não sendo mais necessários os bundlers para unificação.
+
+A ferramenta Vite faz uso dessa nova funcionalidade dos Browsers e já tem um compilador embutido.
+Criar aplicação com Vite: npm create vite@latest
+
+
+Recomendado o uso de 'named exports' ('export' ao lado da definição do objeto a ser exportado) em vez
+de 'default exports' (que permitem mudar o nome do objeto exportado onde ele será importado).
+Importação:
+  Named exports: importação entre chaves, exemplo: import { APP } from './src/App'
+  Default exports: importação direta, exemplo: import APP_OU_QUALQUER_OUTRO_NOME from './src/App'
+
+
+Elementos básicos do React: componentes, que visam:
+  1) A repetibilidade de elementos com poucas variações por toda a aplicação, para eficiência.
+  2) Separação de elementos/partes complexas do código, para facilitar a manutenção. 
+São construídos como funções e retornam elementos HTML ou outros componentes. 
+
+Componentes podem receber propriedades, e assim cada componente pode ter diversos conteúdos e comportamentos
+a depender das propriedades passadas a eles.
+
+
+As importações de CSS devem ser feitas nos componentes React, e não diretamente no 'index.html'.
+Para fazer CSS específicos para cada componente, uma primeira abordagem é usar o CSS Modules, 
+já suportado pelo Vite.
+
+
+Para responsividade do App, foi adicionado em App.module.css:
+  @media (max-width: 768px) {
+    html{
+      font-size: 87.5%;
+    }
+
+    .wrapper{
+      grid-template-columns: 1fr;
+    }
+  }
+
+Como tudo no app está com medidas relativas (rem), a diminuição da fonta padrão
+de todo o documento para 87,5% faz com que tudo diminua em larguras pequenas de dispositivo, 
+cabendo mais conteúdo em tela.
+

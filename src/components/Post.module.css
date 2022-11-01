@@ -1,0 +1,141 @@
+.post{
+  background-color: var(--gray-800);
+  border-radius: 8px;
+  padding: 2.5rem;
+}
+
+.post + .post{
+  margin-top: 2rem;
+}
+
+.post > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.author{
+  display: flex;
+  align-items: center;
+  gap:1rem;
+
+}
+
+.author img{
+  box-sizing: initial;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 8px;
+  border: 4px solid var(--gray-800);
+  outline: 2px solid var(--blue-500);
+}
+
+.author div strong{
+  display: block;
+  color: var(--gray-100);
+  line-height: 1.6;
+}
+
+.author div span{
+  display: block;
+  font-size: 0.875rem;
+  color: var(--gray-400);
+  line-height: 1.6;
+}
+
+.post header time {
+  font-size: 0.875rem;
+  color: var(--gray-400);
+}
+
+.content{
+  line-height: 1.6;
+  color: var(--gray-300);
+  margin-top: 1.5rem;
+}
+
+.content p{
+  margin-top: 1.5rem;
+}
+
+.content a{
+  font-weight: bold;
+  color: var(--blue-500);
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.content a:hover{
+  color: var(--blue-300);
+}
+
+
+.commentForm{
+  width: 100%;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--gray-600);
+}
+
+.commentForm > strong{
+  color: var(--gray-100);
+  line-height: 1.6;
+}
+
+.commentForm textarea{
+  color: var(--gray-100);
+  background-color: var(--gray-900);
+  line-height: 1.4;
+  width: 100%;
+  resize: none;
+  height: 6rem;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: none;
+}
+
+.commentForm footer{
+  visibility: hidden;
+  max-height: 0;
+}
+
+.commentForm:focus-within footer{
+  visibility: visible;
+  max-height: none;
+}
+
+.commentForm button[type=submit]{
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  color: var(--white);
+  background-color: var(--blue-500);
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+.commentForm button[type=submit]:not(:disabled):hover{
+  background-color: var(--blue-300);
+  transition: all 0.1s;
+}
+
+.commentForm button[type=submit]:disabled{
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.commentList{
+  margin-top: 2rem;
+}
+
+.hashtags{
+  display:inline-flex;
+}
+
+.hashtags + .hashtags{
+  margin-left: 10px;
+}
+
