@@ -3,15 +3,35 @@ import { Comment } from './Comment'
 import styles from './Post.module.css'
 import {format, formatDistanceToNow} from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
-import { useState } from 'react'
+import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from 'react'
 
-export function Post({post:{author,content,publishedAt}}: any){
+interface Author {
+  avatarUrl: string,
+  name: string,
+  role: string
+}
+
+interface Content {
+  type: string,
+  text: string,
+  link?:string
+}
+
+interface PostProps {
+  post: {
+    author: Author,
+    content: Content[],
+    publishedAt: Date
+  }
+}
+
+export function Post({post:{author,content,publishedAt}}: PostProps){
   const [comments, setComments] = useState<string[]>([])
   const [comment, setComment] = useState("")
   const publishedAtDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {locale: ptBR})
   const publishedDateRelativeToNow = formatDistanceToNow(publishedAt, {locale:ptBR, addSuffix:true})
 
-  function handleCreateNewComment(e: any){
+  function handleCreateNewComment(e: FormEvent){
     e.preventDefault()
     if (comment !== "") {
       setComments( state => [...state, comment])
@@ -20,8 +40,8 @@ export function Post({post:{author,content,publishedAt}}: any){
   }
 
   function handleCommentInput(e: any){
-    e.target.setCustomValidity("")
-    const commentInput = e.target.value
+    e.currentTarget.setCustomValidity("")
+    const commentInput = e.currentTarget.value
     setComment(commentInput)
   }
 
@@ -30,7 +50,7 @@ export function Post({post:{author,content,publishedAt}}: any){
   }
 
   function handleInvalid(e: any){
-    e.target.setCustomValidity("Este campo é obrigatório")
+    e.currentTarget.setCustomValidity("Este campo é obrigatório")
   }
 
   let isInputEmpty = comment.length===0
