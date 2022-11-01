@@ -3,7 +3,7 @@ import { Comment } from './Comment'
 import styles from './Post.module.css'
 import {format, formatDistanceToNow} from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
-import { ChangeEvent, ChangeEventHandler, FormEvent, useState } from 'react'
+import { FormEvent, useState } from 'react'
 
 interface Author {
   avatarUrl: string,
