@@ -57,3 +57,8 @@ Como tudo no app está com medidas relativas (rem), a diminuição da fonta padr
 de todo o documento para 87,5% faz com que tudo diminua em larguras pequenas de dispositivo, 
 cabendo mais conteúdo em tela.
 
+
+Usado conceito de extensão de atributos HTML no Typescript, na imagem do componente Avatar.
+Assim, qualquer atributo normal de imagem pode ser passado para o componente no futuro,
+além dos atributos exclusivos definidos nele.
+

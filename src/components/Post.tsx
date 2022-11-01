@@ -3,29 +3,30 @@ import { Comment } from './Comment'
 import styles from './Post.module.css'
 import {format, formatDistanceToNow} from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
-import { FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
 interface Author {
   avatarUrl: string,
   name: string,
-  role: string
+  role: string,
 }
 
 interface Content {
   type: string,
   text: string,
-  link?:string
+  link?: string,
 }
 
 interface PostProps {
   post: {
     author: Author,
     content: Content[],
-    publishedAt: Date
+    publishedAt: Date,
   }
 }
 
 export function Post({post:{author,content,publishedAt}}: PostProps){
+
   const [comments, setComments] = useState<string[]>([])
   const [comment, setComment] = useState("")
   const publishedAtDateFormatted = format(publishedAt, "d 'de' LLLL 'às' HH:mm'h'", {locale: ptBR})
@@ -39,21 +40,21 @@ export function Post({post:{author,content,publishedAt}}: PostProps){
     }
   }
 
-  function handleCommentInput(e: any){
+  function handleCommentInput(e: ChangeEvent<HTMLTextAreaElement>){
     e.currentTarget.setCustomValidity("")
     const commentInput = e.currentTarget.value
     setComment(commentInput)
+  }
+
+  function handleInvalid(e: ChangeEvent<HTMLTextAreaElement>){
+    e.currentTarget.setCustomValidity("Este campo é obrigatório")
   }
 
   function deleteComment(i : number) {
     setComments( state => [...state.splice(i,1)])
   }
 
-  function handleInvalid(e: any){
-    e.currentTarget.setCustomValidity("Este campo é obrigatório")
-  }
-
-  let isInputEmpty = comment.length===0
+  let isInputEmpty = comment.length === 0
 
   return (
     <article className={styles.post}>
@@ -100,8 +101,8 @@ export function Post({post:{author,content,publishedAt}}: PostProps){
           placeholder='Deixe seu comentário' 
           value={comment} 
           onChange={handleCommentInput} 
-          required
           onInvalid={handleInvalid}
+          required
         > 
         </textarea>
         <footer>
